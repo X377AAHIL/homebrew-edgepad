@@ -18,6 +18,16 @@ cask "edgepad" do
                    args: ["--force", "--deep", "--sign", "-", "#{appdir}/EdgePad.app"]
   end
 
+  uninstall_postflight do
+    system_command "/usr/bin/tccutil",
+                   args: ["reset", "Accessibility", "com.aahilshaaravg.EdgePad"]
+    system_command "/usr/bin/tccutil",
+                   args: ["reset", "ListenEvent", "com.aahilshaaravg.EdgePad"]
+  end
+
+  uninstall quit:       "com.aahilshaaravg.EdgePad",
+            login_item: "EdgePad"
+
   zap trash: [
     "~/Library/Preferences/com.aahilshaaravg.EdgePad.plist",
     "~/Library/Application Support/EdgePad",
