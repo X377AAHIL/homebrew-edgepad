@@ -11,7 +11,7 @@ cask "edgepad" do
 
   # The app is not notarized, so we must strip the quarantine
   # attribute to prevent macOS Gatekeeper from blocking it.
-  postflight do
+  postflight_steps do
     system_command "/usr/bin/xattr",
                    args: ["-cr", "#{appdir}/EdgePad.app"]
   end
