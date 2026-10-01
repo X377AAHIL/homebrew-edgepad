@@ -14,6 +14,8 @@ cask "edgepad" do
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-rd", "com.apple.quarantine", "#{appdir}/EdgePad.app"]
+    system_command "/usr/bin/codesign",
+                   args: ["--force", "--deep", "--sign", "-", "#{appdir}/EdgePad.app"]
   end
 
   zap trash: [
