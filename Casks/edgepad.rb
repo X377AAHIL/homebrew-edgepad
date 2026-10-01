@@ -13,16 +13,16 @@ cask "edgepad" do
   # attribute to prevent macOS Gatekeeper from blocking it.
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-rd", "com.apple.quarantine", "#{appdir}/EdgePad.app"]
+                   args: ["-rd", "com.apple.quarantine", "#{appdir}/EdgePad.app"], must_succeed: false
     system_command "/usr/bin/codesign",
-                   args: ["--force", "--deep", "--sign", "-", "#{appdir}/EdgePad.app"]
+                   args: ["--force", "--deep", "--sign", "-", "#{appdir}/EdgePad.app"], must_succeed: false
   end
 
   uninstall_postflight do
     system_command "/usr/bin/tccutil",
-                   args: ["reset", "Accessibility", "com.aahilshaaravg.EdgePad"]
+                   args: ["reset", "Accessibility", "com.aahilshaaravg.EdgePad"], must_succeed: false
     system_command "/usr/bin/tccutil",
-                   args: ["reset", "ListenEvent", "com.aahilshaaravg.EdgePad"]
+                   args: ["reset", "ListenEvent", "com.aahilshaaravg.EdgePad"], must_succeed: false
   end
 
   uninstall quit:       "com.aahilshaaravg.EdgePad",
