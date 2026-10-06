@@ -1,6 +1,6 @@
 cask "edgepad" do
-  version "1.0.4"
-  sha256 "dbaa20c123ffe6e513389a3b5343d66a7558435cc027a321c60c9f4f29793b53"
+  version "1.1.0"
+  sha256 "2a6b8cb11ac2fc5ba6f6b31a4acd1014fb21e23b9b2dcc872409c8f7dc9562a1"
 
   url "https://github.com/X377AAHIL/EdgePad/releases/download/v#{version}/EdgePad-#{version}.dmg"
   name "EdgePad"
