@@ -9,13 +9,13 @@ cask "edgepad" do
 
   app "EdgePad.app"
 
-  postflight_steps do
+  postflight do
     system_command "/usr/bin/xattr",
                    args: ["-rd", "com.apple.quarantine", "#{appdir}/EdgePad.app"], must_succeed: false
   end
 
 
-  uninstall_postflight_steps do
+  uninstall_postflight do
     system_command "/usr/bin/tccutil",
                    args: ["reset", "Accessibility", "com.aahilshaaravg.EdgePad"], must_succeed: false
     system_command "/usr/bin/tccutil",
