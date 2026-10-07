@@ -9,21 +9,20 @@ cask "edgepad" do
 
   app "EdgePad.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-rd", "com.apple.quarantine", "#{appdir}/EdgePad.app"], must_succeed: false
-  end
-
-
-  uninstall_postflight do
-    system_command "/usr/bin/tccutil",
-                   args: ["reset", "Accessibility", "com.aahilshaaravg.EdgePad"], must_succeed: false
-    system_command "/usr/bin/tccutil",
-                   args: ["reset", "ListenEvent", "com.aahilshaaravg.EdgePad"], must_succeed: false
-  end
-
-  uninstall quit:       "com.aahilshaaravg.EdgePad",
-            login_item: "EdgePad"
+  uninstall quit:        "com.aahilshaaravg.EdgePad",
+            login_item:  "EdgePad",
+            script:      [
+              {
+                executable: "/usr/bin/tccutil",
+                args:       ["reset", "Accessibility", "com.aahilshaaravg.EdgePad"],
+                sudo:       false,
+              },
+              {
+                executable: "/usr/bin/tccutil",
+                args:       ["reset", "ListenEvent", "com.aahilshaaravg.EdgePad"],
+                sudo:       false,
+              },
+            ]
 
   zap trash: [
     "~/Library/Preferences/com.aahilshaaravg.EdgePad.plist",
